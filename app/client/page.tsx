@@ -1,7 +1,8 @@
+import { LoginForm } from "@/components/client/login-form";
 import React from "react";
 
 const page = () => {
-  return <div className="h-full flex items-center justify-center">page</div>;
+  return <LoginForm></LoginForm>;
 };
 
 export default page;
