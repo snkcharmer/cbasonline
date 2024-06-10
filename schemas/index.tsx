@@ -1,10 +1,19 @@
 import * as z from "zod";
 
 export const ClientLoginSchema = z.object({
-  trid: z.number().min(10, {
-    message: "Trainee ID is Required",
+  trid: z.string().min(9, {
+    message: "Trainee ID is Invalid",
   }),
-  code: z.number().min(8, {
-    message: "Schedule Code is required",
+  code: z.string().min(8, {
+    message: "Schedule Code is Invalid",
+  }),
+});
+
+export const AdminLoginSchema = z.object({
+  username: z.string().min(3, {
+    message: "Username is Invalid",
+  }),
+  password: z.string().min(5, {
+    message: "Password is Invalid",
   }),
 });

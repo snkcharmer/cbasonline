@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState, useTransition } from "react";
-import { CardWrapper } from "../card-wrapper";
+import { CardWrapper } from "@/components/card-wrapper";
 import {
   Form,
   FormControl,
@@ -13,21 +13,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { ClientLoginSchema } from "@/schemas";
+import { AdminLoginSchema } from "@/schemas";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { login } from "@/actions/client";
+import { login } from "@/actions/admin";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  const form = useForm<z.infer<typeof ClientLoginSchema>>({
-    resolver: zodResolver(ClientLoginSchema),
+  const form = useForm<z.infer<typeof AdminLoginSchema>>({
+    resolver: zodResolver(AdminLoginSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof ClientLoginSchema>) => {
+  const onSubmit = (values: z.infer<typeof AdminLoginSchema>) => {
     startTransition(() => {
       login(values).then((data) => {
         setError(data?.error);
@@ -37,21 +37,21 @@ export const LoginForm = () => {
   };
   const [isPending, startTransition] = useTransition();
   return (
-    <CardWrapper headerLabel="Please login to start exam">
+    <CardWrapper headerLabel="ADMIN">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
             <FormField
               control={form.control}
-              name="trid"
+              name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Trainee ID</FormLabel>
+                  <FormLabel>Username</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="Trainee ID"
+                      placeholder="Username"
                     />
                   </FormControl>
                   <FormMessage />
@@ -60,15 +60,16 @@ export const LoginForm = () => {
             />
             <FormField
               control={form.control}
-              name="code"
+              name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Code</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="Schedule Code"
+                      placeholder="******"
+                      type="password"
                     />
                   </FormControl>
                   <Button

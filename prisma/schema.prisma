@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Login {
+  id            String    @id @default(cuid())
+  name          String?
+  username      String?   @unique
+  password      String?
+  position      String?
+}
+
+model Trainee {
+  trid Int @id
+  lastname String @map("lname")
+  firstname String @map("fname")
+  middlename String @map("mname")
+  extension String @map("ext")
+  bdate DateTime
+  license String
+  rank String
+  grades Grade[]
+}
+
+model Grade {
+  id Int @id @default(autoincrement())
+  code Int
+  trainee Trainee @relation(fields: [trid], references:[trid])
+  trid Int
+  trainingid Int
+  submodid Int
+  exam1 Decimal
+  item1 Decimal
+  rate1 Decimal
+  date1 DateTime
+  exam2 Decimal
+  item2 Decimal
+  rate2 Decimal
+  date2 DateTime
+  exam3 Decimal
+  item3 Decimal
+  rate3 Decimal
+  date3 DateTime
+  fgrade Decimal
+  count Int
+  locked Int
+  created_at DateTime
+  modified_at DateTime
+}
+
+model Module {
+  modcode Int @id
+  item String
+  dscrptn String
+  quantity Int
+  duration Int
+  active Int
+  created_at DateTime
+  modified_at DateTime
+  submodule SubModule[]
+}
+
+model SubModule {
+  submodid Int @id @default(autoincrement())
+  module Module @relation(fields:[modcode], references:[modcode])
+  modcode Int 
+  submodule String
+  description String
+}
