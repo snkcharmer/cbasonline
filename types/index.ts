@@ -102,3 +102,31 @@ export interface TrainingRecord {
 export interface ApiTrainee {
   trainee: Trainee[];
 }
+
+export type TExamCode = {
+  code: number;
+  submodid: number;
+};
+
+export type Questions = {
+  id: number;
+  item: string;
+  opt1: string;
+  opt2: string;
+  opt3: string;
+  opt4: string;
+  banner: string;
+  module_id: number;
+};
+
+export type Module = {
+  dscrptn: string;
+  modcode: number;
+  module: string;
+  id: number;
+};
+
+export type Assessment = {
+  module: Module;
+  questions: Questions[];
+};

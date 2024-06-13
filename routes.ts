@@ -35,6 +35,7 @@ export const adminRoutes = [
   "/admin/grades",
   "/admin/integrate",
   "/admin/dashboard",
+  "/admin/question",
 ];
 
 export const clientRoutes = ["/client/assessment", "/client/grades"];

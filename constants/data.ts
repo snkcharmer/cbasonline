@@ -125,10 +125,10 @@ export const navItems: NavItem[] = [
     label: "grade",
   },
   {
-    title: "Employee",
-    href: "/dashboard/employee",
-    icon: "employee",
-    label: "employee",
+    title: "Questions",
+    href: "/admin/question",
+    icon: "help",
+    label: "question",
   },
   {
     title: "Profile",
@@ -141,11 +141,5 @@ export const navItems: NavItem[] = [
     href: "/dashboard/kanban",
     icon: "kanban",
     label: "kanban",
-  },
-  {
-    title: "Login",
-    href: "/",
-    icon: "login",
-    label: "login",
   },
 ];
