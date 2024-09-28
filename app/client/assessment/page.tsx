@@ -33,25 +33,23 @@ const AssessmentPage = async () => {
   // console.log(questions);
   return (
     <>
-      <div className="flex flex-col w-5/6 md:w-1/3">
-        <ScrollArea>
-          <AssessmentWrapper
-            trainee={trainee}
-            assessment={assessment}
-          ></AssessmentWrapper>
-        </ScrollArea>
+      <ScrollArea>
+        <AssessmentWrapper
+          trainee={trainee}
+          assessment={assessment}
+        ></AssessmentWrapper>
+      </ScrollArea>
 
-        <div className="w-1/3">
-          {/* Assessment Page {JSON.stringify(session)} */}
-          <form
-            action={async () => {
-              "use server";
-              await signOut({ redirectTo: "/client" });
-            }}
-          >
-            <button type="submit">Sign Out</button>
-          </form>
-        </div>
+      <div className="w-1/3">
+        {/* Assessment Page {JSON.stringify(session)} */}
+        <form
+          action={async () => {
+            "use server";
+            await signOut({ redirectTo: "/client" });
+          }}
+        >
+          <button type="submit">Sign Out</button>
+        </form>
       </div>
     </>
   );

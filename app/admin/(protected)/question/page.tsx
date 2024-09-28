@@ -1,7 +1,13 @@
-import React from "react";
+import QuestionWrapper from "@/components/questions/question-wrapper";
 
 const QuestionPage = () => {
-  return <div>QuestionPage</div>;
+  const data = {};
+
+  return (
+    <>
+      <QuestionWrapper></QuestionWrapper>
+    </>
+  );
 };
 
 export default QuestionPage;

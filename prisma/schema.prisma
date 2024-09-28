@@ -57,6 +57,7 @@ model Grade {
   locked Int
   created_at DateTime
   modified_at DateTime
+  result Result[]
 }
 
 model Module {
@@ -69,6 +70,7 @@ model Module {
   created_at DateTime
   modified_at DateTime
   submodule SubModule[]
+  question Question[]
 }
 
 model SubModule {
@@ -77,4 +79,32 @@ model SubModule {
   modcode Int 
   submodule String
   description String
+}
+
+model Result {
+  id Int @id
+  gradeid Int
+  grade Grade @relation(fields:[gradeid], references:[id])
+  question Question @relation(fields:[question_id], references:[id])
+  question_id Int
+  answer_code  String
+  count Int
+  created DateTime
+}
+
+model Question {
+  id Int @id
+  item String
+  opt1 String
+  opt2 String
+  opt3 String
+  opt4 String
+  answer String
+  banner String
+  active Int
+  created DateTime
+  modified DateTime
+  modcode Int
+  module Module @relation(fields:[modcode], references:[modcode])
+  result Result[]
 }

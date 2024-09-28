@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button } from "../ui/button";
 import { Assessment, Trainee } from "@/types";
@@ -11,7 +11,7 @@ export const AssessmentWrapper = ({
   trainee,
   assessment,
 }: {
-  trainee: Trainee;
+  trainee: Trainee | undefined;
   assessment: Assessment;
 }) => {
   const [examStarted, setExamStarted] = useState(false);
@@ -28,13 +28,17 @@ export const AssessmentWrapper = ({
   const { module, questions } = assessment;
   return (
     <>
+      <Timer
+        start={examStarted}
+        duration={module.duration * 60}
+        onTimeUp={handleTimeUp}
+      />
       {examStarted === false ? (
         <Welcome trainee={trainee} />
       ) : (
-        <QuestionsWrapper questions={questions} />
+        <QuestionsWrapper timeUp={timeUp} questions={questions} />
       )}
 
-      <Timer start={examStarted} duration={300} onTimeUp={handleTimeUp} />
       {examStarted === false ? (
         <Button size="lg" onClick={startExam}>
           Start

@@ -33,3 +33,7 @@ export const searchCode = (search: string = "") => {
   submodid = var2 === undefined ? 0 : parseInt(var2, 10);
   // revalidatePath("/admin/grades");
 };
+
+export const calculateScore = (answers: any) => {
+  console.log(answers);
+};

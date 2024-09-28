@@ -10,7 +10,7 @@ interface CardWrapperProps {
 
 export const CardWrapper = ({ children, headerLabel }: CardWrapperProps) => {
   return (
-    <Card className="w-[400px] shadow-md">
+    <Card className="md:w-full shadow-md">
       <CardHeader>
         <Header label={headerLabel}></Header>
       </CardHeader>

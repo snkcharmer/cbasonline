@@ -124,9 +124,15 @@ export type Module = {
   modcode: number;
   module: string;
   id: number;
+  duration: number;
 };
 
 export type Assessment = {
   module: Module;
   questions: Questions[];
+};
+
+export type CorrectAnswer = {
+  id: number;
+  answer: string;
 };

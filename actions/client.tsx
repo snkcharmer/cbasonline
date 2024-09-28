@@ -46,12 +46,19 @@ export const login = async (values: z.infer<typeof ClientLoginSchema>) => {
   }
 };
 
-export const getTrainees = async (trid: number): Promise<Trainee> => {
-  const res = await fetch(`http://localhost/cbas/api/trainee/?trid=${trid}}`);
-  // console.log(trid);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+export const getTrainees = async (
+  trid: number
+): Promise<Trainee | undefined> => {
+  try {
+    const res = await fetch(`http://localhost/cbas/api/trainee/?trid=${trid}}`);
+    // console.log(trid);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
 
-  return await res.json();
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
 };

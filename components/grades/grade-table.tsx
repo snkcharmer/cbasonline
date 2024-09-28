@@ -46,32 +46,43 @@ const GradeTable = ({ data }: GradeWrapperProps) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((record) => {
-              // const isLocked = lockStates[record.id] ?? record.locked === 1;
-              return (
-                <TableRow key={record.id}>
-                  <TableCell>{record.id}</TableCell>
-                  <TableCell>{record.code}</TableCell>
-                  <TableCell>{`${record.trainee.firstname} ${record.trainee.lastname}`}</TableCell>
-                  <TableCell>{record.fgrade}</TableCell>
-                  <TableCell>
-                    {new Date(record.created_at).toLocaleString()}
-                  </TableCell>
-                  <TableCell>
-                    {new Date(record.modified_at).toLocaleString()}
-                  </TableCell>
-                  <TableCell>
-                    {/* <Checkbox
+            {data.length > 0 ? (
+              data.map((record) => {
+                // const isLocked = lockStates[record.id] ?? record.locked === 1;
+                return (
+                  <TableRow key={record.id}>
+                    <TableCell>{record.id}</TableCell>
+                    <TableCell>{record.code}</TableCell>
+                    <TableCell>{`${record.trainee.firstname} ${record.trainee.lastname}`}</TableCell>
+                    <TableCell>{record.fgrade}</TableCell>
+                    <TableCell>
+                      {new Date(record.created_at).toLocaleString()}
+                    </TableCell>
+                    <TableCell>
+                      {new Date(record.modified_at).toLocaleString()}
+                    </TableCell>
+                    <TableCell>
+                      {/* <Checkbox
                     checked={isLocked}
                     onCheckedChange={() =>
                       handleLockStateChange(record.id, isLocked)
                     }
                   ></Checkbox> */}
-                    <GradeCheckbox locked={record.locked} gradeId={record.id} />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                      <GradeCheckbox
+                        locked={record.locked}
+                        gradeId={record.id}
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            ) : (
+              <TableRow>
+                <TableCell colSpan={7} style={{ textAlign: "center" }}>
+                  No data found
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
         {/* <div>Grades Table: {JSON.stringify(data)}</div> */}
