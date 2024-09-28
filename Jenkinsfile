@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/snkcharmer/cbasonline.git', branch: 'main'
+                sshagent (credentials: ['0f538165-1d9e-40b6-ba9d-ff08410ca498']) {
+                    sh 'git clone git@github.com:snkcharmer/cbasonline.git'
+                }
             }
         }
         stage('Build Docker Image') {
