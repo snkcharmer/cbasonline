@@ -1,0 +1,30 @@
+services:
+  app:
+    image: cbas
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+# services:
+#   app:
+#     image: cbasonline:latest
+#     ports:
+#       - "3000:3000"
+#     environment:
+#       - NEXTAUTH_URL=http://localhost:3000
+#       - AUTH_TRUST_HOST=true
+#     volumes:
+#       - app-data:/app/data
+#     deploy:
+#       update_config:
+#         parallelism: 1
+#         delay: 10s
+#       restart_policy:
+#         condition: on-failure
+
+# volumes:
+#   app-data:
+#     driver: local
