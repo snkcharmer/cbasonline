@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPush() // This triggers the pipeline when a push event occurs. Check
+        githubPush() // This triggers the pipeline when a push event occurs. Check 2
     }
 
     stages {
